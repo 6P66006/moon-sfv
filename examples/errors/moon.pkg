@@ -1,0 +1,5 @@
+import {
+  "localdev/moon-sfv" @lib,
+}
+
+pkgtype(kind: "executable")
