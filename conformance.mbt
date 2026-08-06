@@ -174,6 +174,24 @@ pub(all) enum ParsedValue {
 }
 
 ///|
+/// Parses `input` as a field of the given type, returning a type-erased
+/// [`ParsedValue`]. Useful when the field type is only known at runtime.
+pub fn FieldType::parse(
+  self : FieldType,
+  input : String,
+) -> Result[ParsedValue, SfError] {
+  parse_by_type(input, self.wire_name())
+}
+
+///|
+/// Serializes a type-erased parsed value back to its canonical wire form.
+pub fn ParsedValue::serialize(
+  self : ParsedValue,
+) -> Result[SerializedField, SfError] {
+  serialize_field(self)
+}
+
+///|
 /// Compares a parsed field against its expected abstract structure.
 pub fn expected_matches(
   actual : ParsedValue,
