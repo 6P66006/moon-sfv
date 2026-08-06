@@ -14,9 +14,22 @@
 # modified to mask a missing toolchain.
 
 $ErrorActionPreference = "Stop"
-$moon = "D:\Moonbit\bin\moon.exe"
 $project = Split-Path -Parent $PSScriptRoot
 Set-Location $project
+
+# Resolve `moon` from PATH first; fall back to the known local toolchain
+# location only when it is not on PATH. Override with $env:MOON_BIN.
+if ($env:MOON_BIN) {
+    $moon = $env:MOON_BIN
+} elseif (Get-Command moon -ErrorAction SilentlyContinue) {
+    $moon = (Get-Command moon).Source
+} elseif (Test-Path "D:\Moonbit\bin\moon.exe") {
+    $moon = "D:\Moonbit\bin\moon.exe"
+} else {
+    Write-Host "ERROR: cannot locate the moon toolchain (set MOON_BIN or add moon to PATH)" -ForegroundColor Red
+    exit 1
+}
+Write-Host "Using moon: $moon"
 
 function Invoke-Step {
     param([string]$Label, [scriptblock]$Body)
