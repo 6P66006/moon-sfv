@@ -40,7 +40,7 @@ fn main {
 
 ///|
 /// The CLI version, kept in sync with `moon.mod`'s `version`.
-const CLI_VERSION = "0.1.0-dev"
+const CLI_VERSION = "0.1.0"
 
 ///|
 fn print_version() -> Unit {

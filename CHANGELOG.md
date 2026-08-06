@@ -2,13 +2,13 @@
 
 All notable changes to this project are recorded here.
 
-## [Unreleased]
+## [0.1.0] — 2026-08-04
 
 - Renamed the module namespace from `localdev/moon-sfv` to
   `6P66006/moon-sfv` in `moon.mod`, the CLI and example `moon.pkg` files,
   and the documentation (see `docs/renaming.md`).
-
-## [0.1.0-dev] — 2026-08-04
+- Set the release version to `0.1.0` and added the `repository` field
+  (`https://github.com/6P66006/moon-sfv`).
 
 Initial local development build.
 

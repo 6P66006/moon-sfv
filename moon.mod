@@ -1,8 +1,10 @@
 name = "6P66006/moon-sfv"
 
-version = "0.1.0-dev"
+version = "0.1.0"
 
 readme = "README.md"
+
+repository = "https://github.com/6P66006/moon-sfv"
 
 license = "Apache-2.0"
 
