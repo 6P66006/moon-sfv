@@ -5,7 +5,7 @@ familiarity with RFC 9651's parsing and serializing algorithms (§4).
 
 ## Overview
 
-The crate is a single MoonBit package (`localdev/moon-sfv`) with three
+The crate is a single MoonBit package (`6P66006/moon-sfv`) with three
 concentric layers:
 
 ```

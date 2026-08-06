@@ -1,45 +1,23 @@
-# Renaming guide
+# Renaming record
 
-The module currently uses the temporary local namespace `localdev/moon-sfv`
-in `moon.mod`:
+This document records how the module was renamed from the temporary local
+namespace `localdev/moon-sfv` to the final namespace `6P66006/moon-sfv`.
+
+## Status: DONE
+
+On 2026-08-04 the module namespace was changed to:
 
 ```toml
-name = "localdev/moon-sfv"
+name = "6P66006/moon-sfv"
 ```
 
-This is a placeholder that avoids attaching any real identity to the
-project before a final maintainer/namespace is decided. **It must not be
-published with the placeholder name.** Once a final identity is chosen,
-replace `localdev/moon-sfv` everywhere it appears.
+This is the final namespace and should be used when publishing to Mooncakes.
+The temporary `localdev/moon-sfv` placeholder no longer appears anywhere in
+the repository.
 
-## Files that reference the module name
+## What was changed
 
-The name appears in two kinds of places:
-
-1. **`moon.mod`** — the module declaration itself.
-2. **Package dependency declarations** — every `moon.pkg` that imports the
-   library:
-   - `cmd/sfv-tool/moon.pkg`
-   - `examples/parse_item/moon.pkg`
-   - `examples/parse_list/moon.pkg`
-   - `examples/parse_dictionary/moon.pkg`
-   - `examples/canonicalize/moon.pkg`
-
-   Each contains a line of the form:
-   ```
-   import {
-     "localdev/moon-sfv" @lib,
-   }
-   ```
-   The alias `@lib` can stay the same.
-
-3. **Documentation** — `README.md`, `docs/*.md`, and `THIRD_PARTY_NOTICES.md`
-   mention the package name in prose. Update these for consistency.
-
-## What to change
-
-Replace the string `localdev/moon-sfv` with the final name, e.g.
-`owner/moon-sfv`, in:
+The string `localdev/moon-sfv` was replaced with `6P66006/moon-sfv` in:
 
 - `moon.mod`
 - `cmd/sfv-tool/moon.pkg`
@@ -47,27 +25,29 @@ Replace the string `localdev/moon-sfv` with the final name, e.g.
 - `examples/parse_list/moon.pkg`
 - `examples/parse_dictionary/moon.pkg`
 - `examples/canonicalize/moon.pkg`
+- `examples/errors/moon.pkg`
 - `README.md`
 - `docs/architecture.md`
-- `docs/testing.md`
+- `CONTRIBUTING.md`
 
-A simple find-and-replace across the repository is sufficient. After
-renaming:
+The import alias `@lib` in the `moon.pkg` files is unchanged.
 
-1. Run `moon clean && moon check && moon test` for each target to confirm
-   the resolution still works.
-2. Run `scripts/verify_httpwg_snapshot.py` (it does not embed the module
-   name, but re-verify anyway).
+## What was NOT changed
 
-## What NOT to change
+- The generated files `httpwg_conformance_data*.mbt` — they are produced by
+  `scripts/import_httpwg_tests.py` and do not embed the module name.
+- `testdata/httpwg/SOURCE.json` — its provenance fields describe the
+  upstream repository, not this project.
 
-- **Do not** edit the generated files `httpwg_conformance_data*.mbt` —
-  they are produced by `scripts/import_httpwg_tests.py` and do not contain
-  the module name.
-- **Do not** edit `testdata/httpwg/SOURCE.json` — its provenance fields
-  describe the upstream repository, not this project.
-- **Do not** set `repository` in `moon.mod` or add author/email fields in
-  this phase.
+## Verification after the rename
 
-This phase intentionally keeps the placeholder; perform the rename only when
-the final identity is decided.
+- `moon clean`
+- `moon check` and `moon test` on `wasm-gc`, `js`, and `native` — all pass
+  (117 tests each, 0 errors, 0 warnings).
+- `moon fmt --check` passes.
+- `scripts/verify_httpwg_snapshot.py` passes.
+
+## If the namespace needs to change again in the future
+
+The same procedure applies: replace `6P66006/moon-sfv` in the files listed
+above, verify with the three targets, and re-run the snapshot check.

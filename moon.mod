@@ -1,4 +1,4 @@
-name = "localdev/moon-sfv"
+name = "6P66006/moon-sfv"
 
 version = "0.1.0-dev"
 

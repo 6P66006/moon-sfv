@@ -19,9 +19,9 @@ MoonBit. Contributions should stay within that scope:
 - Never introduce floating point into `SfDecimal`'s value representation.
 - Every public behavior change must come with tests. All three targets
   (`native`, `js`, `wasm-gc`) must stay at 0 errors and 0 warnings.
-- Do not run `moon login`, `moon publish`, `git init`, or any release step
-  as part of this project in its current phase. The module name is the
-  temporary `localdev/moon-sfv`; see `docs/renaming.md`.
+- The module namespace is `6P66006/moon-sfv`; keep it consistent across
+  `moon.mod` and the `moon.pkg` files that import it (see
+  `docs/renaming.md`).
 
 ## Development workflow
 

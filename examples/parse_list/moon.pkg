@@ -1,6 +1,6 @@
 import {
   "moonbitlang/core/debug",
-  "localdev/moon-sfv" @lib,
+  "6P66006/moon-sfv" @lib,
 }
 
 pkgtype(kind: "executable")

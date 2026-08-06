@@ -1,7 +1,12 @@
 # Changelog
 
-All notable changes to this project are recorded here. The project is in
-local development; no releases have been published.
+All notable changes to this project are recorded here.
+
+## [Unreleased]
+
+- Renamed the module namespace from `localdev/moon-sfv` to
+  `6P66006/moon-sfv` in `moon.mod`, the CLI and example `moon.pkg` files,
+  and the documentation (see `docs/renaming.md`).
 
 ## [0.1.0-dev] — 2026-08-04
 

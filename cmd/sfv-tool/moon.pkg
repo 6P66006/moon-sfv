@@ -5,7 +5,7 @@ import {
   "moonbitlang/core/env",
   "moonbitlang/core/int64",
   "moonbitlang/core/string",
-  "localdev/moon-sfv" @lib,
+  "6P66006/moon-sfv" @lib,
 }
 
 pkgtype(kind: "executable")

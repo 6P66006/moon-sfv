@@ -29,10 +29,8 @@ interoperably, plus tooling to prove conformance.
 - A conformance harness running the official HTTP Working Group test
   vectors, and a CLI (`sfv-tool`) for ad-hoc checking.
 
-**Out of scope.** Field-specific semantics (what a given field *means*),
-stdin input for the CLI, and publishing/registry integration. The module
-name is a local placeholder (`localdev/moon-sfv`) until a final namespace is
-chosen — see `docs/renaming.md`.
+**Out of scope.** Field-specific semantics (what a given field *means*) and
+stdin input for the CLI. The module namespace is `6P66006/moon-sfv`.
 
 ## What is RFC 9651?
 
