@@ -29,12 +29,25 @@ fn main {
     "roundtrip" => run_field_cmd(tail, "roundtrip")
     "-h" | "--help" => print_usage()
     "help" => print_usage()
+    "-V" | "--version" => print_version()
     _ => {
       println("sfv-tool: unknown command: \{command}")
       print_usage()
       cli_exit(2)
     }
   }
+}
+
+///|
+/// The CLI version, kept in sync with `moon.mod`'s `version`.
+const CLI_VERSION = "0.1.0-dev"
+
+///|
+fn print_version() -> Unit {
+  println("moon-sfv \{CLI_VERSION}")
+  println(
+    "RFC 9651 Structured Field Values parser, serializer, and conformance toolkit",
+  )
 }
 
 ///|
@@ -45,7 +58,7 @@ fn strip_program_name(args : Array[String]) -> Array[String] {
   let first = args[0]
   let known = [
     "parse", "validate", "canonicalize", "roundtrip", "conformance", "-h", "--help",
-    "help",
+    "help", "-V", "--version",
   ]
   for k in known {
     if first == k {
@@ -66,6 +79,7 @@ fn print_usage() -> Unit {
   println("  sfv-tool canonicalize --type <item|list|dictionary> INPUT")
   println("  sfv-tool roundtrip --type <item|list|dictionary> INPUT")
   println("  sfv-tool conformance")
+  println("  sfv-tool --version")
   println("")
   println("  --type is required for field commands. INPUT is a single")
   println("  positional argument (reading from stdin is not supported yet).")
