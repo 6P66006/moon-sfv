@@ -1,0 +1,11 @@
+import {
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/bytes",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/env",
+  "moonbitlang/core/int64",
+  "moonbitlang/core/string",
+  "localdev/moon-sfv" @lib,
+}
+
+pkgtype(kind: "executable")

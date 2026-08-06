@@ -1,0 +1,9 @@
+# MoonBit build artifacts
+_build/
+
+# Generated interface files
+*.mbti
+
+# OS noise
+.DS_Store
+Thumbs.db
