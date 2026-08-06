@@ -13,6 +13,27 @@ against the implementation.
 
 [RFC 9651]: https://www.rfc-editor.org/rfc/rfc9651.html
 
+## Goals and scope
+
+**Goal.** Provide a strict, exact, dependency-free MoonBit implementation of
+RFC 9651 so MoonBit applications can build and consume Structured Fields
+interoperably, plus tooling to prove conformance.
+
+**Scope.**
+- Full parse / serialize / canonicalize support for all eight bare-item
+  types and all three top-level containers (Item, List, Dictionary),
+  including parameters, inner lists, multi-line fields, and the
+  omit-empty-field rule.
+- Exact decimal arithmetic (no floating point), structured errors, and
+  configurable input limits for hostile HTTP traffic.
+- A conformance harness running the official HTTP Working Group test
+  vectors, and a CLI (`sfv-tool`) for ad-hoc checking.
+
+**Out of scope.** Field-specific semantics (what a given field *means*),
+stdin input for the CLI, and publishing/registry integration. The module
+name is a local placeholder (`localdev/moon-sfv`) until a final namespace is
+chosen — see `docs/renaming.md`.
+
 ## What is RFC 9651?
 
 HTTP headers are normally defined as opaque strings, which forces every
@@ -133,6 +154,35 @@ Field commands read the input from the single positional argument; errors
 are printed with the error kind and byte offset and exit with a non-zero
 status. Byte sequences are rendered as hex, and dates keep their raw
 seconds value.
+
+## Building and running
+
+Requires the MoonBit toolchain (`moon`, `moonc`, `moonrun`). No external
+MoonBit dependency is used beyond the standard library.
+
+```shell
+# check, build, and test on the default target
+moon check
+moon build
+moon test
+
+# test a specific target
+moon test --target native
+moon test --target js
+moon test --target wasm-gc
+
+# run the CLI
+moon run cmd/sfv-tool -- --help
+
+# run an example
+moon run examples/parse_item
+
+# run the official httpwg conformance suite
+moon run cmd/sfv-tool -- conformance
+
+# full verification for all targets (format, build, test, snapshot check)
+powershell -ExecutionPolicy Bypass -File scripts/verify_all.ps1
+```
 
 ## Security limits
 
